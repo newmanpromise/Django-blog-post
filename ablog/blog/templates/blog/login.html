@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+
+
+{% block title %} Login {% endblock %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+    {{message }}
+    {% endfor %}
+{% endif %}
+<h1>Login</h1><br>
+
+
+<form method = 'POST' action = "{% url 'login' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input type="text" class="form-control" name = "username" placeholder ='enter username'>
+    </div><br>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name = 'password'>
+    </div><br>
+    
+    <button type="submit" class="btn btn-primary">Login</button>
+
+    <br><br>
+      Not Registered Sign Up <a href="{% url 'register' %}">Here..</a>
+  </form>
+
+{% endblock %}

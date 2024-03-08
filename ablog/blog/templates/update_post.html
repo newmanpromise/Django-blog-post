@@ -1,0 +1,37 @@
+
+{% extends "blog/base.html" %}
+
+
+{% block title %} Edit blog post {% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Update post</h1>
+        <br>
+        <div class="mb-3">
+
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+
+            <button  class="btn btn-primary">Update</button>
+        </div>
+            {% else %}
+
+            you're not allowed here! please login as the currect user to update post.
+
+    {% endif %}
+
+        {% else %}
+
+        You're not allowed here! please login to update post.
+    
+
+{% endif %}
+
+
+
+{% endblock %}

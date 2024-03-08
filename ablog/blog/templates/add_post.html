@@ -1,0 +1,39 @@
+
+{% extends "blog/base.html" %}
+
+
+{% block title %} create a new blog post {% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Add post</h1>
+<br>
+<div class="mb-3">
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+
+    <button  class="btn btn-primary">Post</button>
+</div>
+
+<script>
+
+    var name = "{{ user.id }}";
+    document.getElementById("newman").value
+        = name;
+
+</script>
+
+{% else %}
+
+You're not allowed here! please login to to add post.
+
+{% endif %}
+
+
+
+{% endblock %}
